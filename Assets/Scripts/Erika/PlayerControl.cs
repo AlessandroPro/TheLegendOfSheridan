@@ -8,8 +8,10 @@ public class PlayerControl : MonoBehaviour
 
     private Rigidbody rb;
     private CapsuleCollider col;
-    private Animator anim;
+    public Animator anim;
+    public AnimatorOverrideController animOverrideController;
     private Transform cameraTransform;
+    private Controllable controllable;
 
     [SerializeField] private Vector2 axis;
     [SerializeField] private float movingTurnSpeed = 360;
@@ -25,13 +27,20 @@ public class PlayerControl : MonoBehaviour
         col = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        controllable = GetComponent<Controllable>();
         cameraTransform = Camera.main.transform;
+
+        //animOverrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
+        //anim.runtimeAnimatorController = animOverrideController;
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
+        if(!controllable.lockMovement)
+        {
+            PlayerMovement();
+        }
     }
 
     private void PlayerMovement()
