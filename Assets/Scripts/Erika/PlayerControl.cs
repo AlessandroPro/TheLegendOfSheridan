@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+    //for testing UI
+   [System.NonSerialized]
+    public int health = 100;
+    public GameObject pauseMenu;
+    [System.NonSerialized]
+    public bool isPaused = false;
+    //
+
     public float rotationSpeed = 1.0f;
 
     private Rigidbody rb;
@@ -62,6 +70,26 @@ public class PlayerControl : MonoBehaviour
         ApplyExtraTurnRotation();
         
         UpdateAnimator();
+
+        //testing UI
+        if(Input.GetButtonUp("pause"))
+        {
+            if (!isPaused)
+            {
+                //Debug.Log("pause pressed");
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0f;
+                isPaused = true;
+
+            }
+            else
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1f;
+                isPaused = false;
+            }
+        }
+        //UI
     }
 
     private void ApplyExtraTurnRotation()
