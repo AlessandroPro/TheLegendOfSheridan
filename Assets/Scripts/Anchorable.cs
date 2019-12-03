@@ -5,7 +5,7 @@ using UnityEngine;
 public class Anchorable : MonoBehaviour
 {
     public Transform TargetAnchor;
-    public float kh; //springynes coeff
+    public float kh; //springyness coeff
     public bool snapToTarget = false;
 
     // Start is called before the first frame update
@@ -41,7 +41,7 @@ public class Anchorable : MonoBehaviour
                 transform.rotation = TargetAnchor.rotation;
 
                 // Stick to the anchor indefinitely once close enough
-                if(diff.magnitude < 0.5f)
+                if(diff.magnitude < 0.2f)
                 {
                     snapToTarget = true;
                 }
