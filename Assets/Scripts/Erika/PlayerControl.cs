@@ -1,26 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
-    //for testing UI
-    [System.NonSerialized]
-    public int health = 100;
-    public GameObject pauseMenu;
-   
-
-    [System.NonSerialized]
-    public bool isPaused = false;
-    //
-
     public float rotationSpeed = 1.0f;
 
     private Rigidbody rb;
     private CapsuleCollider col;
-    private Animator anim;
+    public Animator anim;
+    public AnimatorOverrideController animOverrideController;
     private Transform cameraTransform;
+    private Controllable controllable;
 
     [SerializeField] private Vector2 axis;
     [SerializeField] private float movingTurnSpeed = 360;
@@ -36,20 +27,20 @@ public class PlayerControl : MonoBehaviour
         col = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        controllable = GetComponent<Controllable>();
         cameraTransform = Camera.main.transform;
+
+        //animOverrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
+        //anim.runtimeAnimatorController = animOverrideController;
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
-
-        //test ui
-        if(health<=0)
+        if(!controllable.lockMovement)
         {
-            SceneManager.LoadScene("GameOver");
+            PlayerMovement();
         }
-        //
     }
 
     private void PlayerMovement()
@@ -80,26 +71,6 @@ public class PlayerControl : MonoBehaviour
         ApplyExtraTurnRotation();
         
         UpdateAnimator();
-
-        //testing UI
-        if(Input.GetButtonUp("pause"))
-        {
-            if (!isPaused)
-            {
-                //Debug.Log("pause pressed");
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0f;
-                isPaused = true;
-
-            }
-            else
-            {
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1f;
-                isPaused = false;
-            }
-        }
-        //UI
     }
 
     private void ApplyExtraTurnRotation()
