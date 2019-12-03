@@ -1685,11 +1685,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 428328, guid: 3b32b5a20c9db2c49b4d8e8025f6aeaa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.254
+      value: 1.22
       objectReference: {fileID: 0}
     - target: {fileID: 428328, guid: 3b32b5a20c9db2c49b4d8e8025f6aeaa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.818
+      value: -0.819
       objectReference: {fileID: 0}
     - target: {fileID: 428328, guid: 3b32b5a20c9db2c49b4d8e8025f6aeaa, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2233,6 +2233,49 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: 0.08, z: 0}
+--- !u!114 &1960632862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960632859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7973198d2909d644a4ba92fea6400d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandle: {fileID: 1239347304}
+  rightHandle: {fileID: 1205180310}
+  recipient: {fileID: 0}
+  equippable: 1
+  ikOnAnchor: 1
+  animAnchor: {fileID: 0}
+  pickupClips:
+  - {fileID: 0}
+  - {fileID: 0}
+  useClip: {fileID: 0}
+  animSpeedMultiplier: 0
+  anchor: 0
+  useEvents: []
+--- !u!114 &1960632863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960632859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36133bdb25806d4ebe5943365059d57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCloseEnough:
+  - m_PersistentCalls:
+      m_Calls: []
+  OnTooFar:
+  - m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2003356347
 GameObject:
   m_ObjectHideFlags: 0
