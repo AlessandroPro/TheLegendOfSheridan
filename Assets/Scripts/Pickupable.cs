@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 //
 //  this aspect allows the object to be pickedup by the 'other' gameobject 
 //
+[System.Serializable]
+public class UseEvent : UnityEvent<GameObject> { }
+
 public class Pickupable : MonoBehaviour
 {
     public GameObject leftHandle;
@@ -15,9 +19,12 @@ public class Pickupable : MonoBehaviour
 
     public Transform animAnchor;
     public AnimationClip[] pickupClips;
+    public AnimationClip useClip;
     public float animSpeedMultiplier;
 
     public EquipAnchor.EquipAnchors anchor;
+
+    public List<UseEvent> useEvents;
 
     public void OnAvailable(GameObject other)
     {
@@ -47,6 +54,14 @@ public class Pickupable : MonoBehaviour
     public void OnDrop()
     {
 
+    }
+
+    public void OnUseEvent(int eventIndex, GameObject sender)
+    {
+        if(eventIndex < useEvents.Count)
+        {
+            useEvents[eventIndex].Invoke((GameObject) sender);
+        }
     }
 
     public void SetToAnchor(List<EquipAnchor> anchors)

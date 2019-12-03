@@ -11,13 +11,13 @@ public class IKControl : MonoBehaviour
     public Transform lookObj = null;
 
     [Header("ik params")]
-    private float weight;
+    public float weight;
     public GameObject trackObjLH;
     public GameObject trackObjRH;
     public GameObject trackObjLF;
     public GameObject trackObjRF;
 
-    public bool getWeightFromAnim = true;
+    public bool getWeightFromAnim = false;
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class IKControl : MonoBehaviour
             {
                 if(getWeightFromAnim)
                 {
-                    //weight = animator.GetFloat("IKRamp");
+                    weight = animator.GetFloat("IKRamp");
                 }
 
                 // Set the look __target position__, if one has been assigned
@@ -90,10 +90,4 @@ public class IKControl : MonoBehaviour
         trackObjRF = null;
         lookObj = null;
     }
-
-    public void setWeight(float newWeight)
-    {
-        weight = newWeight;
-    }
-
 }

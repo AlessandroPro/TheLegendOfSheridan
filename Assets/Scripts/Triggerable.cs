@@ -17,7 +17,7 @@ public class Triggerable : MonoBehaviour
         // if we collide with an object that is allowed to interact with us
         // then dispatch the 'close enough' events
 
-        if (col.gameObject.GetComponent<PlayerControl>())
+        if (col.gameObject.GetComponent<Recipient>())
         {
             foreach (RecipientEvent e in OnCloseEnough)
             {
@@ -29,7 +29,7 @@ public class Triggerable : MonoBehaviour
 
     public void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.GetComponent<PlayerControl>())
+        if (col.gameObject.GetComponent<Recipient>())
         {
             foreach (RecipientEvent e in OnTooFar)
             {

@@ -1,4 +1,151 @@
-﻿using System.Collections;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//[System.Serializable]
+//public class EquipAnchor
+//{
+//    public enum EquipAnchors
+//    {
+//        LeftHand,
+//        RightHand,
+//        LeftFoot,
+//        RightFoot,
+//        LeftWaist,
+//        RightWaist,
+//        Belly
+//    };
+
+//    public EquipAnchors anchor;
+//    public Transform transform;
+//}
+
+//public class ItemEquipper : MonoBehaviour
+//{
+//    public Pickupable availableItem; // Item that can be picked up
+//    public Pickupable equippedItem;  // Currently equipped item
+
+//    private Controllable controllable;
+//    private IKControl ikc;
+
+//    public List<EquipAnchor> equipAnchors;
+
+//    public Animator[] anims;
+//    //private AnimatorOverrideController animOverrider;
+
+
+//    // Start is called before the first frame update
+//    void Start()
+//    {
+//        //anim = GetComponent<Animator>();
+//        controllable = GetComponent<Controllable>();
+//        ikc = GetComponent<IKControl>();
+//    }
+
+//    // Update is called once per frame
+//    void Update()
+//    {
+//        if(!controllable.lockInteraction)
+//        {
+//            if(Input.GetButtonDown("Circle Button"))
+//            {
+//                if (equippedItem)
+//                {
+//                    UseItem();
+//                }
+//                else if (availableItem)
+//                {
+//                    PickupItem();
+//                }
+//            }
+//        }
+//    }
+
+//    // Starts the pickup animation and picks up the available item, if there is one
+//    void PickupItem()
+//    {
+//        if(availableItem)
+//        {
+//            Pickupable pickedItem = availableItem;
+//            availableItem = null;
+
+//            AnimationClip[] pickupClips = pickedItem.pickupClips;
+
+//            // Set the IK left hand and right hand to the left and right hands of the pickedItem
+//            ikc.trackObjRH = pickedItem.rightHandle;
+//            ikc.trackObjLH = pickedItem.leftHandle;
+
+
+//            pickedItem.OnPickUp();
+
+//            foreach (Animator anim in anims)
+//            {
+//                var animOverrider = new AnimatorOverrideController(anim.runtimeAnimatorController);
+//                anim.runtimeAnimatorController = animOverrider;
+
+//                // Override the pickup animations with the animations given by the Pickupable, if any
+//                if (animOverrider && pickupClips.Length == 2)
+//                {
+//                    animOverrider["CrouchDown"] = pickupClips[0];
+//                    animOverrider["CrouchUp"] = pickupClips[1];
+//                }
+//                anim.SetFloat("AnimSpeed", pickedItem.animSpeedMultiplier);
+//                anim.SetTrigger("Pickup");
+//            }
+
+//            ikc.getWeightFromAnim = true;
+
+//            equippedItem = pickedItem;
+//        }
+//    }
+
+//    void UseItem()
+//    {
+//        if (equippedItem)
+//        {
+//            AnimationClip useClip = equippedItem.useClip;
+
+//            equippedItem.OnUse();
+
+//            foreach (Animator anim in anims)
+//            {
+//                var animOverrider = new AnimatorOverrideController(anim.runtimeAnimatorController);
+//                anim.runtimeAnimatorController = animOverrider;
+
+//                // Override the pickup animations with the animations given by the Pickupable, if any
+//                if (animOverrider && useClip)
+//                {
+//                    animOverrider["DrawArrow"] = useClip;
+//                }
+//                anim.SetTrigger("Use");
+//            }
+//        }
+//    }
+
+//    void dropItem()
+//    {
+
+//    }
+
+
+//    void anchorPickup()
+//    {
+//        if (equippedItem)
+//        {
+//            equippedItem.SetToAnchor(equipAnchors);
+//        }
+
+//        ikc.getWeightFromAnim = false;
+//    }
+
+//    void resetIK()
+//    {
+
+//    }
+//}
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +173,7 @@ public class ItemEquipper : MonoBehaviour
     public Pickupable equippedItem;  // Currently equipped item
 
     private Controllable controllable;
+    private IKControl ikc;
 
     public List<EquipAnchor> equipAnchors;
 
@@ -38,14 +186,15 @@ public class ItemEquipper : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         controllable = GetComponent<Controllable>();
+        ikc = GetComponent<IKControl>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!controllable.lockInteraction)
+        if (!controllable.lockInteraction)
         {
-            if(Input.GetButtonDown("Circle Button"))
+            if (Input.GetButtonDown("Circle Button"))
             {
                 if (equippedItem)
                 {
@@ -59,34 +208,59 @@ public class ItemEquipper : MonoBehaviour
         }
     }
 
+    // Starts the pickup animation and picks up the available item, if there is one
     void PickupItem()
     {
-        Pickupable pickedItem = availableItem;
-        availableItem = null;
-
-        AnimationClip[] pickupClips = pickedItem.pickupClips;
-
-        if (anim)
+        if (availableItem)
         {
-            animOverrider = new AnimatorOverrideController(anim.runtimeAnimatorController);
-            anim.runtimeAnimatorController = animOverrider;
-        }
-        // Override the pickup animations with the animations given by the Pickupable, if any
-        if (animOverrider && pickupClips.Length == 2)
-        {
-            animOverrider["CrouchDown"] = pickupClips[0];
-            animOverrider["CrouchUp"] = pickupClips[1];
-        }
-        anim.SetFloat("AnimSpeed", pickedItem.animSpeedMultiplier);
-        anim.SetTrigger("Pickup");
+            Pickupable pickedItem = availableItem;
+            availableItem = null;
 
+            AnimationClip[] pickupClips = pickedItem.pickupClips;
 
-        equippedItem = pickedItem;
+            // Set the IK left hand and right hand to the left and right hands of the pickedItem
+            ikc.trackObjRH = pickedItem.rightHandle;
+            ikc.trackObjLH = pickedItem.leftHandle;
+
+            pickedItem.OnPickUp();
+
+            if (anim)
+            {
+                animOverrider = new AnimatorOverrideController(anim.runtimeAnimatorController);
+                anim.runtimeAnimatorController = animOverrider;
+            }
+            // Override the pickup animations with the animations given by the Pickupable, if any
+            if (animOverrider && pickupClips.Length == 2)
+            {
+                animOverrider["CrouchDown"] = pickupClips[0];
+                animOverrider["CrouchUp"] = pickupClips[1];
+            }
+            anim.SetFloat("AnimSpeed", pickedItem.animSpeedMultiplier);
+            anim.SetTrigger("Pickup");
+            ikc.getWeightFromAnim = true;
+
+            equippedItem = pickedItem;
+        }
     }
 
     void UseItem()
     {
-        anim.SetTrigger("Use");
+        if (equippedItem)
+        {
+            AnimationClip useClip = equippedItem.useClip;
+
+            if (anim)
+            {
+                animOverrider = new AnimatorOverrideController(anim.runtimeAnimatorController);
+                anim.runtimeAnimatorController = animOverrider;
+            }
+            // Override the pickup animations with the animations given by the Pickupable, if any
+            if (animOverrider && useClip)
+            {
+                animOverrider["DrawArrow"] = useClip;
+            }
+            anim.SetTrigger("Use");
+        }
     }
 
     void dropItem()
@@ -94,47 +268,27 @@ public class ItemEquipper : MonoBehaviour
 
     }
 
-    //void pickUpItem()
-    //{
-    //    if(itemIter < availableItems.Count)
-    //    {
-    //        anim.SetBool("hasWeapon", false);
-    //        PlayerController player = GetComponent<PlayerController>();
-    //        grabbedObject = availableItems[itemIter];
-    //        Pickupable pickupable = grabbedObject.GetComponent<Pickupable>();
-    //        if (pickupable)
-    //        {
-    //            // change this to be left handle or right handle depending on which is null, and therefore change the IKGoal
-    //            ikc.trackObjRH = pickupable.rightHandle;
-    //            ikc.trackObjLH = pickupable.leftHandle;
-    //            equippedItems.Add(availableItems[itemIter]);
-    //            pickupable.OnPickUp();
-    //            if(player.weapon)
-    //            {
-    //                player.dropWeapon();
-    //            }
-    //            if(grabbedObject.GetComponent<Weapon>())
-    //            {
-    //                if(player)
-    //                {
-    //                    player.weapon = grabbedObject.GetComponent<Pickupable>();
-    //                    anim.SetBool("hasWeapon", true);
-    //                } 
-    //            }
-    //        }
-    //        itemIter++;
-    //        if(itemIter >= availableItems.Count)
-    //        {
-    //            clearAvailableItems();
-    //        }
-    //    }
-    //}
 
     void anchorPickup()
     {
         if (equippedItem)
         {
             equippedItem.SetToAnchor(equipAnchors);
+        }
+
+        ikc.getWeightFromAnim = false;
+
+        if(!equippedItem.ikOnAnchor)
+        {
+            ikc.weight = 0;
+        }
+    }
+
+    void sendUseEvent(int eventID)
+    {
+        if(equippedItem)
+        {
+            equippedItem.OnUseEvent(eventID, gameObject);
         }
     }
 

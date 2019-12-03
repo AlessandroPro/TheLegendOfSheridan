@@ -6,7 +6,7 @@ public class Anchorable : MonoBehaviour
 {
     public Transform TargetAnchor;
     public float kh; //springynes coeff
-    public bool isAnchored = false;
+    public bool snapToTarget = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +27,26 @@ public class Anchorable : MonoBehaviour
 
     public void HysteresisUpdate()
     {
-        if (TargetAnchor != null)// && !isAnchored)
+        if (TargetAnchor != null)
         {
-            Vector3 diff = TargetAnchor.position - this.transform.position;
-            //this.transform.position += kh * (diff);
-            transform.position = TargetAnchor.position; 
-            transform.rotation = TargetAnchor.rotation;
+            if (snapToTarget)
+            {
+                transform.position = TargetAnchor.position;
+                transform.rotation = TargetAnchor.rotation;
+            }
+            else
+            {
+                Vector3 diff = TargetAnchor.position - this.transform.position;
+                this.transform.position += kh * (diff);
+                transform.rotation = TargetAnchor.rotation;
+
+                // Stick to the anchor indefinitely once close enough
+                if(diff.magnitude < 0.5f)
+                {
+                    snapToTarget = true;
+                }
+            }
+
         }
     }
 }
