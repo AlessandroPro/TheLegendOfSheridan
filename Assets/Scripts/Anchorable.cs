@@ -23,6 +23,7 @@ public class Anchorable : MonoBehaviour
     public void SetTarget(Transform target)
     {
         TargetAnchor = target;
+        //snapToTarget = false;
     }
 
     public void HysteresisUpdate()
@@ -41,7 +42,7 @@ public class Anchorable : MonoBehaviour
                 transform.rotation = TargetAnchor.rotation;
 
                 // Stick to the anchor indefinitely once close enough
-                if(diff.magnitude < 0.2f)
+                if(diff.magnitude < 0.1f)
                 {
                     snapToTarget = true;
                 }
