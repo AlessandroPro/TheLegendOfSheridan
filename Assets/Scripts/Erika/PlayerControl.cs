@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
     //for testing UI
-   [System.NonSerialized]
+    [System.NonSerialized]
     public int health = 100;
     public GameObject pauseMenu;
+   
+
     [System.NonSerialized]
     public bool isPaused = false;
     //
@@ -40,6 +43,13 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+
+        //test ui
+        if(health<=0)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+        //
     }
 
     private void PlayerMovement()

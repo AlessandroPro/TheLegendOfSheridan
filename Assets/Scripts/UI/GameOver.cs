@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
-    public GameObject player;
-    public Button selectedButton;
+    public Button selectButton;
     // Start is called before the first frame update
     void Start()
     {
-        selectedButton.Select();
+        selectButton.Select();
     }
 
     // Update is called once per frame
@@ -18,11 +18,9 @@ public class PauseMenu : MonoBehaviour
     {
         
     }
-    public void onResume()
+    public void onRestart()
     {
-        Time.timeScale = 1f;
-        player.GetComponent<PlayerControl>().isPaused = false;
-        this.gameObject.SetActive(false);
+        SceneManager.LoadScene("SampleScene");
     }
     public void onExit()
     {
