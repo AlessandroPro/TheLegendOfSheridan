@@ -42,10 +42,10 @@ public class Horse : MonoBehaviour
 
                 if (lookDir.magnitude > 0)
                 {
-                    transform.parent.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), 5 * Time.deltaTime);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), 5 * Time.deltaTime);
                 }
                // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angleDiff, transform.forward), 1);
-                transform.parent.position += transform.forward * speed * joystickMag * Time.deltaTime;
+                transform.position += transform.forward * speed * joystickMag * Time.deltaTime;
             }
         }
     }

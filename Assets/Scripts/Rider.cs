@@ -80,7 +80,7 @@ public class Rider : MonoBehaviour
             mountedRide = ride;
 
             controllable.lockMovement = true;
-            mountedRide.transform.parent = transform;
+            transform.parent = mountedRide.transform;
         }
     }
 
@@ -91,6 +91,6 @@ public class Rider : MonoBehaviour
         mountedRide = null;
         ikc.lookObj = null;
         controllable.lockMovement = false;
-        mountedRide.transform.parent = null;
+        transform.parent = null;
     }
 }
