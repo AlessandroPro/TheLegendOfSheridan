@@ -16,4 +16,12 @@ public class Enemy : MonoBehaviour
     {
         
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<PlayerWeapon>()!=null)
+        {
+            health -= other.gameObject.GetComponent<PlayerWeapon>().damage;
+           
+        }
+    }
 }
