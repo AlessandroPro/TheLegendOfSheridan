@@ -25,4 +25,16 @@ public class FireBall : MonoBehaviour
         fireBall.GetComponent<Rigidbody>().AddForce((this.gameObject.GetComponent<AIMovement>().player.transform.position - fireBall.transform.position)*100);
         
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<PlayerControl>()!=null)
+        {
+            Destroy(fireBall, 1.0f);
+        }
+        else
+        {
+            Destroy(fireBall, 4.0f);
+
+        }
+    }
 }
