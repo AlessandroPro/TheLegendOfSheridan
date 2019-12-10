@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class CanvasBehaviour : MonoBehaviour
 {
-
-    public GameObject mainCam;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +13,9 @@ public class CanvasBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(mainCam.transform.position);
+        if(Camera.main)
+        {
+            transform.LookAt(Camera.main.transform.position);
+        }
     }
 }

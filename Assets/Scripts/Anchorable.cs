@@ -5,6 +5,8 @@ using UnityEngine;
 public class Anchorable : MonoBehaviour
 {
     public Transform TargetAnchor;
+    public IKControl ikc;
+    public bool ikOnAnchor = false;
     public float kh; //springyness coeff
     public bool snapToTarget = false;
 
@@ -44,10 +46,22 @@ public class Anchorable : MonoBehaviour
                 // Stick to the anchor indefinitely once close enough
                 if(diff.magnitude < 0.1f)
                 {
-                    snapToTarget = true;
+                    SnapToTarget();
                 }
             }
+        }
+    }
 
+    public void SnapToTarget()
+    {
+        snapToTarget = true;
+        if (!ikOnAnchor && ikc)
+        {
+            ikc.weight = 0;
+        }
+        else
+        {
+            ikc.weight = 1;
         }
     }
 }

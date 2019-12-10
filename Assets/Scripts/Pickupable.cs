@@ -15,7 +15,6 @@ public class Pickupable : MonoBehaviour
     public GameObject rightHandle;
     public GameObject recipient;
     public bool equippable = true; // some items can be pickup up but not equipped (like a key)
-    public bool ikOnAnchor;
 
     public Transform animAnchor;
     public AnimationClip[] pickupClips;
@@ -48,12 +47,22 @@ public class Pickupable : MonoBehaviour
 
     public void OnPickUp()
     {
-
+        var anchorable = GetComponent<Anchorable>();
+        if(anchorable && recipient)
+        {
+            anchorable.ikc = recipient.GetComponent<IKControl>();
+        }
+        GetComponent<SphereCollider>().enabled = false;
     }
 
     public void OnDrop()
     {
-
+        var anchorable = GetComponent<Anchorable>();
+        if (anchorable && recipient)
+        {
+            anchorable.ikc = null;
+        }
+        GetComponent<SphereCollider>().enabled = true;
     }
 
     public void OnUseEvent(int eventIndex, GameObject sender)

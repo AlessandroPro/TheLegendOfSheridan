@@ -177,6 +177,8 @@ public class ItemEquipper : MonoBehaviour
     public Pickupable availableItem; // Item that can be picked up
     public Pickupable equippedItem;  // Currently equipped item
 
+    public Queue<Pickupable> inventory;
+
     private Controllable controllable;
     private IKControl ikc;
 
@@ -193,23 +195,29 @@ public class ItemEquipper : MonoBehaviour
     {
         controllable = GetComponent<Controllable>();
         ikc = GetComponent<IKControl>();
+        inventory = new Queue<Pickupable>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(availableItem);
         if (!controllable.lockInteraction)
         {
             if (Input.GetButtonDown("Circle Button"))
             {
-                if (equippedItem)
-                {
-                    UseItem();
-                }
-                else if (availableItem)
+                if (availableItem)
                 {
                     PickupItem();
                 }
+                else if (equippedItem)
+                {
+                    UseItem();
+                }
+            }
+            else if(Input.GetButtonDown("Triangle Button"))
+            {
+                SwapItem();
             }
         }
     }
@@ -219,6 +227,8 @@ public class ItemEquipper : MonoBehaviour
     {
         if (availableItem)
         {
+            holsterItem();
+
             Pickupable pickedItem = availableItem;
             availableItem = null;
 
@@ -255,6 +265,8 @@ public class ItemEquipper : MonoBehaviour
         }
     }
 
+
+
     void UseItem()
     {
         if (equippedItem)
@@ -279,6 +291,39 @@ public class ItemEquipper : MonoBehaviour
         }
     }
 
+    void holsterItem()
+    {
+        ikc.resetTrackers();
+        if (equippedItem)
+        {
+            equippedItem.gameObject.SetActive(false);
+            inventory.Enqueue(equippedItem);
+            equippedItem = null;
+        }
+    }
+
+    void SwapItem()
+    {
+        if (inventory.Count > 0)
+        {
+            holsterItem();
+            availableItem = null;
+            anims[1].gameObject.transform.position = gameObject.transform.position;
+            anims[1].gameObject.transform.rotation = gameObject.transform.rotation;
+
+            equippedItem = inventory.Dequeue();
+            equippedItem.gameObject.SetActive(true);
+            ikc.trackObjRH = equippedItem.rightHandle;
+            ikc.trackObjLH = equippedItem.leftHandle;
+            var anchorable = equippedItem.GetComponent<Anchorable>();
+            if(anchorable)
+            {
+                anchorable.SnapToTarget();
+            }
+        }
+    }
+
+
     void dropItem()
     {
         if(equippedItem)
@@ -296,11 +341,6 @@ public class ItemEquipper : MonoBehaviour
         }
 
         ikc.getWeightFromAnim = false;
-
-        if (!equippedItem.ikOnAnchor)
-        {
-            ikc.weight = 0;
-        }
     }
 
     void sendUseEvent(int eventID)
@@ -309,10 +349,5 @@ public class ItemEquipper : MonoBehaviour
         {
             equippedItem.OnUseEvent(eventID, gameObject);
         }
-    }
-
-    void resetIK()
-    {
-
     }
 }
