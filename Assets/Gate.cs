@@ -22,8 +22,9 @@ public class Gate : MonoBehaviour
                 StartCoroutine(Open());
             }
         }
-        leftDoor.transform.rotation = Quaternion.Slerp(leftDoor.transform.rotation, Quaternion.AngleAxis(180+openAngle, Vector3.up), Time.deltaTime * 2);
-        rightDoor.transform.rotation = Quaternion.Slerp(rightDoor.transform.rotation, Quaternion.AngleAxis(-openAngle, Vector3.up), Time.deltaTime * 2);
+        float angle = Vector3.SignedAngle(Vector3.forward, transform.forward, Vector3.up);
+        leftDoor.transform.rotation = Quaternion.Slerp(leftDoor.transform.rotation, Quaternion.AngleAxis(angle + 180+openAngle, Vector3.up), Time.deltaTime * 2);
+        rightDoor.transform.rotation = Quaternion.Slerp(rightDoor.transform.rotation, Quaternion.AngleAxis(angle - openAngle, Vector3.up), Time.deltaTime * 2);
     }
 
     IEnumerator Open()
