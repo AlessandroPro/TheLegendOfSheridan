@@ -25,6 +25,10 @@ public class PauseMenu : MonoBehaviour
         player.GetComponent<PlayerControl>().isPaused = false;
         this.gameObject.SetActive(false);
     }
+    public void onRestart()
+    {
+
+    }
     public void onExit()
     {
         Time.timeScale = 1f;
