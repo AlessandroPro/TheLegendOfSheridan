@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
-    [System.NonSerialized]
+    
     public float health = 100;
     public GameObject pauseMenu;
 

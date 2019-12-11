@@ -441,7 +441,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4529286252615053819
 Transform:
@@ -1338,6 +1338,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7442880904405662196
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471412270253639592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.043904446, y: 0.010328362, z: 0.043904446}
+  m_Center: {x: 0.000000002793969, y: 0.0013828833, z: -0.000000018296747}
+--- !u!114 &7442880904405662197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471412270253639592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12d70745d6c950f488abd2d4c026196a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gate: {fileID: 612515944358003684}
+  particles: {fileID: 7443447335662176866}
 --- !u!1 &1518432558914763873
 GameObject:
   m_ObjectHideFlags: 0
@@ -7613,33 +7640,6 @@ Transform:
   m_Father: {fileID: 4472416429275126424}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7442880904405662196
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471412270253639592}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.043904446, y: 0.010328362, z: 0.043904446}
-  m_Center: {x: 0.000000002793969, y: 0.0013828833, z: -0.000000018296747}
---- !u!114 &7442880904405662197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471412270253639592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12d70745d6c950f488abd2d4c026196a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gate: {fileID: 612515944358003684}
-  particles: {fileID: 7443447335662176866}
 --- !u!1 &7539994996361964137
 GameObject:
   m_ObjectHideFlags: 0
@@ -7810,7 +7810,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5489451530392707732
 Transform:
@@ -9328,6 +9328,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door Lock
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3d0aef2769dfb1d479d7fd80b0b815f7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d0aef2769dfb1d479d7fd80b0b815f7, type: 3}
 --- !u!1 &1471412270253639592 stripped
@@ -9350,12 +9355,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 2463706976434550203}
     m_Modifications:
     - target: {fileID: 1261140543717858, guid: 08fd1b80cc24cc8439f45fda3c558255, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1261140543717858, guid: 08fd1b80cc24cc8439f45fda3c558255, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340498524264356, guid: 08fd1b80cc24cc8439f45fda3c558255, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429175742853808, guid: 08fd1b80cc24cc8439f45fda3c558255, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1692517446758730, guid: 08fd1b80cc24cc8439f45fda3c558255, type: 3}
       propertyPath: m_Name
       value: Magic fire 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692517446758730, guid: 08fd1b80cc24cc8439f45fda3c558255, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4166505909902172, guid: 08fd1b80cc24cc8439f45fda3c558255, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9415,12 +9436,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198338373201264064, guid: 08fd1b80cc24cc8439f45fda3c558255,
         type: 3}
-      propertyPath: ForceModule.enabled
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198338373201264064, guid: 08fd1b80cc24cc8439f45fda3c558255,
         type: 3}
-      propertyPath: playOnAwake
+      propertyPath: ForceModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198371139109276902, guid: 08fd1b80cc24cc8439f45fda3c558255,
@@ -9430,22 +9451,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198421910201038450, guid: 08fd1b80cc24cc8439f45fda3c558255,
         type: 3}
-      propertyPath: ForceModule.enabled
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198421910201038450, guid: 08fd1b80cc24cc8439f45fda3c558255,
         type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198968408040191748, guid: 08fd1b80cc24cc8439f45fda3c558255,
-        type: 3}
       propertyPath: ForceModule.enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198968408040191748, guid: 08fd1b80cc24cc8439f45fda3c558255,
         type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198968408040191748, guid: 08fd1b80cc24cc8439f45fda3c558255,
+        type: 3}
+      propertyPath: ForceModule.enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

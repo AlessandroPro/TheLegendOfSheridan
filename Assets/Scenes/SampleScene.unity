@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 174d27497d0eec647a4a9a563db4047a, type: 2}
+--- !u!4 &127849189 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2429919898812478539, guid: bcadf461207a88d4299f3aef1338cf1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2429919900601554216}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &204682472
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +663,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14602
+  m_Name: pb_Mesh71728
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1078,7 +1084,7 @@ MonoBehaviour:
   cameraSensitivity: 1000
   distance: 3
   pitchMinMax: {x: -20, y: 80}
-  target: {fileID: 0}
+  target: {fileID: 127849189}
   rotationSmoothing: 0.125
   cameraYaw: 0
   cameraPitch: 0
@@ -1609,6 +1615,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5019533967391776812, guid: 3b8e56e6077daeb4db8d7692513e9ec3,
+        type: 3}
+      propertyPath: damage
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 5109659463392400079, guid: 3b8e56e6077daeb4db8d7692513e9ec3,
         type: 3}
       propertyPath: m_Camera
@@ -1627,11 +1638,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gate
-      objectReference: {fileID: 0}
-    - target: {fileID: 612515944358003688, guid: 6c8260db509617545be93066625b3791,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4529286252615053819, guid: 6c8260db509617545be93066625b3791,
         type: 3}
