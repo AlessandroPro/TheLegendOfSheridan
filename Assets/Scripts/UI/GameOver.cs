@@ -20,7 +20,7 @@ public class GameOver : MonoBehaviour
     }
     public void onRestart()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainMenu");
     }
     public void onExit()
     {

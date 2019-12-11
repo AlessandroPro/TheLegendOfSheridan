@@ -85,7 +85,7 @@ public class Rider : MonoBehaviour
             mountedRide = ride;
 
             controllable.lockMovement = true;
-            transform.parent = mountedRide.transform;
+            transform.parent = mountedRide.transform;            
         }
     }
 

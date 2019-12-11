@@ -41,8 +41,6 @@ public class PlayerControl : MonoBehaviour
         controllable = GetComponent<Controllable>();
         cameraTransform = Camera.main.transform;
 
-        //animOverrideController = new AnimatorOverrideController(anim.runtimeAnimatorController);
-        //anim.runtimeAnimatorController = animOverrideController;
     }
 
     // Update is called once per frame
@@ -51,13 +49,6 @@ public class PlayerControl : MonoBehaviour
         if(!controllable.lockMovement)
         {
             PlayerMovement();
-
-            //test ui
-            if (health <= 0)
-            {
-               // SceneManager.LoadScene("GameOver");
-            }
-            //
         }
         if(Input.GetButtonDown("Start Button"))
         {
@@ -106,26 +97,6 @@ public class PlayerControl : MonoBehaviour
         ApplyExtraTurnRotation();
         
         UpdateAnimator();
-        //testing UI
-        //if (Input.GetButtonUp("pause"))
-        //{
-        //    if (!isPaused)
-        //    {
-        //        //Debug.Log("pause pressed");
-        //        pauseMenu.SetActive(true);
-        //        Time.timeScale = 0f;
-        //        isPaused = true;
-
-        //    }
-        //    else
-        //    {
-        //        pauseMenu.SetActive(false);
-        //        Time.timeScale = 1f;
-        //        isPaused = false;
-        //    }
-        //}
-        //}
-        //UI
 
     }
 
@@ -180,5 +151,12 @@ public class PlayerControl : MonoBehaviour
         controllable.lockInteraction = true;
         controllable.lockMovement = true;
         anim.SetBool("Die", true);
+        StartCoroutine(GameOver());
+    }
+
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("GameOver");
     }
 }
