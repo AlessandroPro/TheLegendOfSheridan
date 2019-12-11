@@ -5,7 +5,6 @@ using UnityEngine;
 public class Horse : MonoBehaviour
 {
     public Controllable controllable;
-    public GameObject mainCam;
     public Animator anim;
 
     private Vector2 axis;
@@ -34,7 +33,7 @@ public class Horse : MonoBehaviour
             if (joystickMag >= 0.1f)
             {
                 float dirAngle = Vector2.SignedAngle(Vector2.up, new Vector2(axis.x, axis.y));
-                Vector3 forwardXZ = new Vector3(mainCam.transform.forward.x, 0, mainCam.transform.forward.z);
+                Vector3 forwardXZ = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
                 Vector3 lookDir = Quaternion.Euler(0, -dirAngle, 0) * forwardXZ;
 
                 float angleDiff = Vector3.SignedAngle(lookDir, transform.forward, Vector3.up);
@@ -54,8 +53,8 @@ public class Horse : MonoBehaviour
     {
         if(other.GetComponent<Arrow>())
         {
-            anim.SetTrigger("Die");
-            isDead = true;
+           // anim.SetTrigger("Die");
+           // isDead = true;
         }
     }
 }

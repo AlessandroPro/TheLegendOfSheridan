@@ -1,10 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
+    [System.NonSerialized]
+    public float health = 100;
+    public GameObject pauseMenu;
+
     public float rotationSpeed = 1.0f;
+
+    [System.NonSerialized]
+    public bool isPaused = false;
 
     private Rigidbody rb;
     private CapsuleCollider col;
@@ -21,6 +29,10 @@ public class PlayerControl : MonoBehaviour
     private Vector3 movement;
     private float turnAmount;
     private float forwardAmount;
+
+    public SkinnedMeshRenderer meshRend;
+    public Material[] DamageMats;
+    bool hit = false;
 
     void Start()
     {
@@ -40,6 +52,13 @@ public class PlayerControl : MonoBehaviour
         if(!controllable.lockMovement)
         {
             PlayerMovement();
+
+            //test ui
+            if (health <= 0)
+            {
+               // SceneManager.LoadScene("GameOver");
+            }
+            //
         }
     }
 
@@ -71,6 +90,27 @@ public class PlayerControl : MonoBehaviour
         ApplyExtraTurnRotation();
         
         UpdateAnimator();
+        //testing UI
+        //if (Input.GetButtonUp("pause"))
+        //{
+        //    if (!isPaused)
+        //    {
+        //        //Debug.Log("pause pressed");
+        //        pauseMenu.SetActive(true);
+        //        Time.timeScale = 0f;
+        //        isPaused = true;
+
+        //    }
+        //    else
+        //    {
+        //        pauseMenu.SetActive(false);
+        //        Time.timeScale = 1f;
+        //        isPaused = false;
+        //    }
+        //}
+        //}
+        //UI
+
     }
 
     private void ApplyExtraTurnRotation()
@@ -84,5 +124,45 @@ public class PlayerControl : MonoBehaviour
     {
         anim.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
         anim.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Enemy_Weapon>() != null)
+        {
+            health -= other.gameObject.GetComponent<Enemy_Weapon>().damage;
+            StartCoroutine(ShowDamage());
+            if(health <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private IEnumerator ShowDamage()
+    {
+        if(!hit)
+        {
+            hit = true;
+            var DefaultMats = meshRend.materials;
+            meshRend.materials = DamageMats;
+            yield return new WaitForSeconds(0.5f);
+            meshRend.materials = DefaultMats;
+            hit = false;
+        }
+
+    }
+
+    private void Respawn()
+    {
+        controllable.lockInteraction = false;
+        controllable.lockMovement = false;
+    }
+
+    private void Die()
+    {
+        controllable.lockInteraction = true;
+        controllable.lockMovement = true;
+        anim.SetBool("Die", true);
     }
 }

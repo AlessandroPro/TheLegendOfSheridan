@@ -71,7 +71,21 @@ ModelImporter:
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
+        intParameter: 3
+        messageOptions: 0
+      - time: 0.45287377
+        functionName: sendUseEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
         intParameter: 1
+        messageOptions: 0
+      - time: 0.70851564
+        functionName: sendUseEvent
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 2
         messageOptions: 0
       transformMask: []
       maskType: 3

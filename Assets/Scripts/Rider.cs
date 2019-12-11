@@ -10,6 +10,8 @@ public class Rider : MonoBehaviour
     private Controllable controllable;
     private IKControl ikc;
     public Animator anim;
+    private CapsuleCollider col;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,8 @@ public class Rider : MonoBehaviour
         anim = GetComponent<Animator>();
         ikc = GetComponent<IKControl>();
         controllable = GetComponent<Controllable>();
+        col = GetComponent<CapsuleCollider>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -62,6 +66,7 @@ public class Rider : MonoBehaviour
                 gameObject.transform.rotation = ride.animStart.rotation;
             }
 
+            rb.isKinematic = true;
             ride.OnMount();
 
             var animOverrider = new AnimatorOverrideController(anim.runtimeAnimatorController);
@@ -88,9 +93,16 @@ public class Rider : MonoBehaviour
     {
         anim.SetTrigger("Ride");
         mountedRide.OnDismount();
+        rb.isKinematic = false;
         mountedRide = null;
         ikc.lookObj = null;
         controllable.lockMovement = false;
         transform.parent = null;
+    }
+
+    public void setMountCollider()
+    {
+        //col.enabled = !col.enabled;
+        //rb.isKinematic = !rb.isKinematic;
     }
 }

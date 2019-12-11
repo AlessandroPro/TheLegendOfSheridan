@@ -6,8 +6,7 @@ public class Mace : MonoBehaviour
 {
     private Transform defaultAnchor;
     private Anchorable anchorable;
-
-    public GameObject particles;
+    public BoxCollider hitCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +37,22 @@ public class Mace : MonoBehaviour
                     anchorable.SetTarget(equipper.useAnchor.transform);
                 }
             }
+        }
+    }
+
+    public void enableHit()
+    {
+        if(hitCollider)
+        {
+            hitCollider.enabled = true;
+        }
+    }
+
+    public void disableHit()
+    {
+        if (hitCollider)
+        {
+            hitCollider.enabled = false;
         }
     }
 

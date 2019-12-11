@@ -9,12 +9,13 @@ public class Arrow : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Destroy(this.gameObject, 10);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void release()
@@ -22,5 +23,13 @@ public class Arrow : MonoBehaviour
         transform.parent = null;
         rb.AddForce(transform.forward * 7, ForceMode.Impulse);
         rb.useGravity = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.GetComponent<Enemy>())
+        {
+           Destroy(this.gameObject);
+        }
     }
 }

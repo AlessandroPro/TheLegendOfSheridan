@@ -17,6 +17,7 @@ public class Rideable : MonoBehaviour
     public GameObject recipient;
     private IKControl ikc;
     private Controllable controllable;
+    public Rigidbody rb;
 
     public CanvasBehaviour prompt;
 
@@ -24,6 +25,7 @@ public class Rideable : MonoBehaviour
     void Start()
     {
         controllable = GetComponent<Controllable>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -74,6 +76,11 @@ public class Rideable : MonoBehaviour
             prompt.gameObject.SetActive(false);
         }
 
+        if(rb)
+        {
+            rb.isKinematic = false;
+        }
+
     }
 
     public void OnDismount()
@@ -81,6 +88,11 @@ public class Rideable : MonoBehaviour
         if(controllable)
         {
             controllable.lockMovement = true;
+        }
+
+        if (rb)
+        {
+            rb.isKinematic = true;
         }
     }
 }
