@@ -11,13 +11,15 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        selectedButton.Select();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+    private void OnEnable()
+    {
+        selectedButton.Select();
     }
     public void onResume()
     {

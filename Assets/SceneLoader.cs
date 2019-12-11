@@ -22,7 +22,8 @@ public class SceneLoader : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            SceneManager.LoadScene(level);
+            //SceneManager.LoadScene(level);
+            LevelMgr.instance.LoadGameplayScene(level);
         }
     }
 }

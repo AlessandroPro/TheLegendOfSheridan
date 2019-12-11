@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameUI : MonoBehaviour
+public class LvlLogic : MonoBehaviour
 {
-    public GameObject player;
-    public Slider healthBar;
-    int health;
+    public void LvlLogicUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            LevelMgr.instance.UnloadCurrentScene();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +21,6 @@ public class GameUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = (int) player.GetComponent<PlayerControl>().health;
-        healthBar.value = health;
+        LvlLogicUpdate();
     }
 }

@@ -8,7 +8,6 @@ public class PlayerControl : MonoBehaviour
     
     public float health = 100;
     public GameObject pauseMenu;
-
     public float rotationSpeed = 1.0f;
 
     [System.NonSerialized]
@@ -59,6 +58,23 @@ public class PlayerControl : MonoBehaviour
                // SceneManager.LoadScene("GameOver");
             }
             //
+        }
+        if(Input.GetButtonDown("Start Button"))
+        {
+            isPaused = !isPaused;
+            switch (isPaused)
+            {
+                case true:
+                    Time.timeScale = 0.0f;
+                    pauseMenu.SetActive(true);
+                    break;
+
+                case false:
+                    Time.timeScale = 1.0f;
+                    pauseMenu.SetActive(false);
+                    break;
+
+            }
         }
     }
 

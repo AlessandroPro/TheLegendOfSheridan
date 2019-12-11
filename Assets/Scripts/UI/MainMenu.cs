@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
 
     public void onPlay()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Overworld");
     }
     public void onExit()
     {
