@@ -5,25 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public bool toGlobal = false;
     public string level; 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            //SceneManager.LoadScene(level);
-            LevelMgr.instance.LoadGameplayScene(level);
+            if(!toGlobal)
+            {
+                LevelMgr.instance.LoadGameplayScene(level);
+            }
+            else
+            {
+                LevelMgr.instance.UnloadCurrentScene();
+            }
         }
     }
 }
