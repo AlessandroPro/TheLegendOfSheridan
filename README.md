@@ -48,3 +48,16 @@ Unlock Locked Doors: use the key with Circle Button
 Open unlocked Doors: kick them open with the Triangle Button
 Mount Horse: Triangle Button
 Dismount Horse: Triangle Button
+
+![Screenshot1](https://user-images.githubusercontent.com/15040875/72306837-74002a80-3646-11ea-8649-aa4200550f63.png)
+![Screenshot2](https://user-images.githubusercontent.com/15040875/72306838-7498c100-3646-11ea-8145-5fd411316bfd.PNG)
+![Screenshot3](https://user-images.githubusercontent.com/15040875/72306839-7498c100-3646-11ea-93ad-2427550019aa.PNG)
+![Screenshot4](https://user-images.githubusercontent.com/15040875/72306840-7498c100-3646-11ea-9d38-a780e519225e.PNG)
+![Screenshot5](https://user-images.githubusercontent.com/15040875/72306841-7498c100-3646-11ea-9499-31c70866fe3b.PNG)
+![Screenshot6](https://user-images.githubusercontent.com/15040875/72306842-7498c100-3646-11ea-83fe-0bb9b618c528.PNG)
+![Screenshot7](https://user-images.githubusercontent.com/15040875/72306843-7498c100-3646-11ea-9557-0819feead8ff.PNG)
+![Screenshot8](https://user-images.githubusercontent.com/15040875/72306844-7498c100-3646-11ea-9de9-cd761fcb6f4d.PNG)
+![Screenshot9](https://user-images.githubusercontent.com/15040875/72306845-7498c100-3646-11ea-8070-a10811fbc74f.PNG)
+![Screenshot10](https://user-images.githubusercontent.com/15040875/72306846-7498c100-3646-11ea-9ccd-4f52bff97521.PNG)
+![Screenshot11](https://user-images.githubusercontent.com/15040875/72306847-7498c100-3646-11ea-8bac-51c142fc0482.PNG)
+
